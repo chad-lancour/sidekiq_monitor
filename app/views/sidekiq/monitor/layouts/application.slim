@@ -3,6 +3,8 @@ html lang="en"
   meta charset="utf-8"
   meta name="viewport" content="width=device-width, initial-scale=1.0"
   title= content_for?(:title) ? yield(:title) : app_name
+  link rel="shortcut icon" href="/#{::HOST_CONTEXT}/fav_sm_#{::HOST_ENV}.ico"
+  link rel="icon" sizes="16x16 32x32" href="/#{::HOST_CONTEXT}/fav_sm_#{::HOST_ENV}.ico"
   = stylesheet_link_tag "sidekiq/monitor/application"
   = csrf_meta_tags
 
