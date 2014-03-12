@@ -6,7 +6,7 @@ module Sidekiq
       end
 
       def root_path
-        Sidekiq::Monitor::Engine.routes.url_helpers.sidekiq_monitor_path
+        "#{::Rails.application.config.relative_url_root}#{Sidekiq::Monitor::Engine.routes.url_helpers.sidekiq_monitor_path}"
       end
     end
   end
