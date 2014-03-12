@@ -17,7 +17,7 @@ class SidekiqMonitor.AbstractJobsTable
       bProcessing: true
       bServerSide: true
       sAjaxSource: @table.data('source')
-      iDisplayLength: 10
+      iDisplayLength: SidekiqMonitor.settings.default_per_page
       aaSorting: [[@columns.enqueued_at, 'desc']]
       sPaginationType: 'bootstrap'
       aoColumns: @options.column_options
@@ -50,7 +50,7 @@ class SidekiqMonitor.AbstractJobsTable
     @initialize_ui()
 
   initialize_ui: =>
-    
+
     @table.on 'click', '.status-value', (e) =>
       tr = $(e.target).parents('tr:first')[0]
       job = @table.fnGetData(tr)
@@ -75,7 +75,7 @@ class SidekiqMonitor.AbstractJobsTable
 
   show_job: (job) =>
     return false if !job?
-    
+
     id = job[@columns.id]
     jid = job[@columns.jid]
     class_name = job[@columns.class_name]

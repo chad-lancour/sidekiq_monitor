@@ -122,6 +122,24 @@ The UI uses polling to update its data. By default, the polling interval is 3000
 Sidekiq::Monitor.options[:poll_interval] = 5000
 ```
 
+#### Number Of Jobs Per Page
+
+The default number of jobs to show per page in the Jobs UI.
+
+```ruby
+# config/initializers/sidekiq_monitor.rb
+Sidekiq::Monitor.options[:default_per_page] = 50
+```
+
+#### Default Selected Queue
+
+The default queue to show in the Queues UI.
+
+```ruby
+# config/initializers/sidekiq_monitor.rb
+Sidekiq::Monitor.options[:default_queue] = 'superworker'
+```
+
 ### Authentication
 
 You'll likely want to restrict access to this interface in a production setting. To do this, you can use routing constraints:

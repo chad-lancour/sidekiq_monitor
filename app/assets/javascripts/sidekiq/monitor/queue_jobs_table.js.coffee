@@ -2,6 +2,7 @@ class SidekiqMonitor.QueueJobsTable extends SidekiqMonitor.AbstractJobsTable
 
   initialize: =>
     options =
+      default_queue: SidekiqMonitor.settings.default_queue
       table_selector: 'table.queue-jobs'
       columns:
         id: 0
@@ -55,11 +56,13 @@ class SidekiqMonitor.QueueJobsTable extends SidekiqMonitor.AbstractJobsTable
     return null unless $(options.table_selector).length
 
     @queue_select = $('[name=queue_select]')
+    @queue_select.val(@queue_select.find('[value='+SidekiqMonitor.settings.default_queue+']').val())
+    if @queue_select.val() == null
+      @queue_select.val(@queue_select.find('option:first').val())
     @queue_select.selectpicker()
     @queue_select.change =>
       @load_selected_queue()
       @reload_table()
-    @queue_select.val(@queue_select.find('option:first').val())
     @load_selected_queue()
 
     @initialize_with_options(options)
