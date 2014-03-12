@@ -1,1 +1,1 @@
-mv .git .git_disabled
+mv .git_disabled .git
