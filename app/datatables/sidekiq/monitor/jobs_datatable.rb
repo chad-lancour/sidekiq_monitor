@@ -38,7 +38,7 @@ module Sidekiq
         ]
         super(view)
       end
-      
+
       private
 
       def data
@@ -79,7 +79,11 @@ module Sidekiq
       end
 
       def simplified_distance_of_time_in_words(from_time, to_time)
-        distance_of_time_in_words(from_time, to_time, true).gsub('less than ', '').gsub('about ', '')
+        if Rails::VERSION::MAJOR < 4
+          distance_of_time_in_words(from_time, to_time, true).gsub('less than ', '').gsub('about ', '')
+        else
+          distance_of_time_in_words(from_time, to_time, include_seconds: true).gsub('less than ', '').gsub('about ', '')
+        end
       end
 
       def search_records(records)
